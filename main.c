@@ -148,14 +148,6 @@ int main()
                     chromosome[i].answer[j]=chromosome[i].decimal_num[0]*test[0][j]*test[0][j]+chromosome[i].decimal_num[1]*test[0][j]+chromosome[i].decimal_num[2];
 
             }
-            for(j=0;j<num_test;j++)
-            {
-                printf("%d\n",chromosome[i].answer[j]);
-
-
-            }
-            printf("\n");
-            system("pause");
             chromosome[i].adaptive_function=0;
             for(j=0;j<num_test;j++)
             {
@@ -163,6 +155,7 @@ int main()
             }
           //printf("%lf\n",average[i]);
             chromosome[i].adaptive_function=sqrt(chromosome[i].adaptive_function);
+
             if(chromosome[i].adaptive_function==0)
             {
             	for(c=0;c<3;c++)
@@ -173,6 +166,7 @@ int main()
             }
             chromosome[i].adaptive_function=1/chromosome[i].adaptive_function;
         }
+
         for(i=0;i<num_chromosome;i++)
         {
         	all_adaptive_function+=chromosome[i].adaptive_function;
@@ -186,12 +180,21 @@ int main()
         		chromosome[i].adaptive_function+=chromosome[i-1].adaptive_function;
         	}
         }
+        for(i=0;i<num_chromosome;i++){
+
+                printf("%.0lf %.0lf %.0lf %lf\n",chromosome[i].decimal_num[0],chromosome[i].decimal_num[1],chromosome[i].decimal_num[2],chromosome[i].adaptive_function);
+
+
+        }
+        printf("\n");
+        system("pause");
         c=0;
-        for(i=0;i<10;i++)
+        for(i=0;i<num_chromosome;i++)
         {
-        	random_num=rand()%100;
+        	random_num=rand()%101;
         	//printf("ran%d:%d\n",i,ran);
-        	for(j=0;j<10;j++)
+
+        	for(j=0;j<num_chromosome;j++)
         	{
         		if(j==0)
         		{
@@ -202,6 +205,7 @@ int main()
         					chromosome[c].decimal_num_new[k]=chromosome[j].decimal_num[k];
         				}
         				c++;
+                        break;
         			}
         		}
         		else
@@ -213,11 +217,13 @@ int main()
         					chromosome[c].decimal_num_new[k]=chromosome[j].decimal_num[k];
         				}
         				c++;
+                        break;
+
         			}
         		}
         	}
         }
-        for(i=0;i<10;i++)
+        for(i=0;i<num_chromosome;i++)
         {
             for(j=0;j<3;j++)
             {
