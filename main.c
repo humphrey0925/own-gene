@@ -51,7 +51,7 @@ void binary(num chromosome[])
             }
             else
             {
-                for(c=3+j*4; c>j+4; c--)
+                for(c=3+j*4; c>j*4-1; c--)
                 {
                     chromosome[i].binary_num[c]=change%2+'0';
                     change/=2;
@@ -140,6 +140,7 @@ int main()
     while(1)
 	{
         printf("%d\n",time);
+        all_adaptive_function=0;
 		for(i=0;i<num_chromosome;i++)
         {
             for(j=0;j<num_test;j++)
@@ -187,7 +188,7 @@ int main()
 
         }
         printf("\n");
-        system("pause");
+        //system("pause");
         c=0;
         for(i=0;i<num_chromosome;i++)
         {
@@ -202,7 +203,7 @@ int main()
         			{
         				for(k=0;k<3;k++)
         				{
-        					chromosome[c].decimal_num_new[k]=chromosome[j].decimal_num[k];
+        					chromosome[i].decimal_num_new[k]=chromosome[j].decimal_num[k];
         				}
         				c++;
                         break;
@@ -214,7 +215,7 @@ int main()
         			{
         				for(k=0;k<3;k++)
         				{
-        					chromosome[c].decimal_num_new[k]=chromosome[j].decimal_num[k];
+        					chromosome[i].decimal_num_new[k]=chromosome[j].decimal_num[k];
         				}
         				c++;
                         break;
@@ -231,7 +232,7 @@ int main()
             }
         }
         binary(chromosome);
-        for (i = 0; i < 10; i+=2)
+        for (i = 0; i < num_chromosome; i+=2)
         {
         	random_num=rand()%15;
         	char temp_str;
